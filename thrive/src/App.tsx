@@ -14,16 +14,16 @@ function App() {
     const tl = gsap.timeline() ;
     tl.fromTo(".lines",{
       opacity: 0 ,
-      duration: 1, 
+      duration: 2, 
       y:-180 ,
     },{
       opacity: 1 ,
       duration: 2, 
       y:0 ,
       ease: "power2.out"
-    }).fromTo(".leftLine",{
+    },"+=0.4").fromTo(".leftLine",{
       opacity: 0 ,  
-      duration: 1 ,
+      duration: 2 ,
       x:-120 ,
     },{
       x:0 ,
@@ -57,7 +57,7 @@ function App() {
             <div className='flex bg-gradient-to-b from-white/20 to-white/30 backdrop-blur-sm  px-3 py-1 rounded-2xl tracking-[-0.12px] text-white cursor-pointer  transition-colors duration-300 '>Download App</div>
         </div>
        </div>
-       <div className='relative mt-[200px] max-w-[1400px] w-full mx-auto flex flex-col items-center justify-between h-full    '>
+       <div className='relative mt-[240px] max-w-[1400px] w-full mx-auto flex flex-col items-center justify-between h-full    '>
            <div className="lines absolute w-[1px] left-[340px] top-[-110px] h-[182px] bg-gradient-to-b from-transparent  to-[120%]  to-[#F27500]/30 rounded-2xl"></div>
            <div className="lines absolute w-[1px] right-[360px] top-[-110px] h-[182px] bg-gradient-to-b from-transparent to-[120%] to-[#F27500]/30 rounded-2xl"></div>
            <div className="leftLine absolute h-[1px] left-[100px] top-[200px] w-[200px] bg-gradient-to-r from-transparent  to-[120%]  to-[#F27500]/30">
@@ -68,7 +68,7 @@ function App() {
           </div>
 
           <div className='flex flex-col items-center gap-10'>
-            <div className="flex flex-col gap-3 py-2 items-center bg-clip-text  text-transparent bg-gradient-to-r from-neutral-100  from-[10%] to-[#F27500] to-[95%] contrast-125 ">
+            <div className="texts flex flex-col gap-3 py-2 items-center bg-clip-text  text-transparent bg-gradient-to-r from-neutral-100  from-[10%] to-[#F27500] to-[95%] contrast-125 ">
                     <span className=" text-7xl  font-semibold  "  >Eternal Wisdom,</span>
                     <span className="text-neutral-50  contrast-125 font-normal text-lg">for Today's Mind</span>
             </div>
@@ -76,7 +76,7 @@ function App() {
                <div className="text-neutral-50 font-normal contrast-50 brightness-50  text-lg max-w-[480px] text-center">Experience meditation reimagined through AI guidance, making mindfulness a natural part of your day</div>
                <div className='flex items-center '>
                  
-                  <div  className="flex px-3 py-2 mt-5 gap-1 items-center border border-[#F27500] rounded-3xl  ">
+                  <div  className="flex px-3 py-2 mt-5 gap-1 items-center border border-[#F27500]/60  rounded-3xl  ">
                     <img src="/apple.svg" alt="Apple Logo" height={24} width={24} />
                     <div className="flex flex-col items-start  text-neutral-50 ">
                         <div className=" font-light text-[10px] leading-3   ">Download on the</div>

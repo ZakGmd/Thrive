@@ -5,21 +5,50 @@
 .forSVG{
     
     
-    filter: drop-shadow(rgba(236, 146, 61, 0.22) 0px -10px 20px);
-    transition: transform 2s ease linear ;
-    animation: svgAnimation 2s cubic-bezier(0.76,-0.58, 0.29, 0.6) 1  ;
+    filter: drop-shadow(rgba(236, 146, 61, 0.22) 0px -10px 14px);
+    
+    animation: svgAnimation 2.5s linear  ;
   
   }
 @keyframes svgAnimation {
-  0%{
+  0%,10%,20%,30%{
     opacity: 0;
     transform: scaleY(0);
+    -webkit-filter: drop-shadow(rgba(236, 146, 61, 0.079) 0px 1px 0px);
+    -moz-filter: drop-shadow(rgba(236, 146, 61, 0.079) 0px 0px 0px);
+    filter: drop-shadow(rgba(236, 146, 61, 0.079) 0px 0px 0px);
+  
     
-  }90%{
-    opacity: 0;
+  }47%{
+    opacity: 0.4;
+    
     transform: scaleY(1);
   }100%{
-    transition-duration: 1000ms;
-    filter: drop-shadow(rgba(236, 146, 61, 0.22) 0px -10px 20px)
+     -webkit-filter: drop-shadow(rgba(236, 146, 61, 0.22) 0px -10px 14px);
+    -moz-filter: drop-shadow(rgba(236, 146, 61, 0.22) 0px -10px 14px);
+    filter: drop-shadow(rgba(236, 146, 61, 0.22) 0px -10px 14px)
   }
 }
+
+.texts{
+    
+    transition: all;
+    animation: text-bg-animation 1.4s ease 1   ;
+  }
+  
+  @keyframes text-bg-animation {
+    0%{
+      background-size: 0%;
+      opacity: 0;
+    }
+    10%,20%,30%,40%,45%{
+      background-size: 60%;
+      opacity: 0;
+    }
+   
+    99%{
+      opacity: 1;
+      background-size: 99%;
+    }
+    
+  }
