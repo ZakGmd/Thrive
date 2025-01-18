@@ -32,7 +32,7 @@ function App() {
           <div className='flex flex-col items-center gap-10'>
             <div className="flex flex-col gap-3 py-2 items-center bg-clip-text  text-transparent bg-gradient-to-r from-neutral-100  from-[10%] to-[#F27500] to-[95%] contrast-125 ">
                     <span className=" text-7xl  font-semibold  "  >Eternal Wisdom,</span>
-                    <span className="text-neutral-50 font-normal text-lg">for Today's Mind</span>
+                    <span className="bg-clip-text  text-transparent bg-gradient-to-r from-neutral-100  from-[10%] to-[#F27500] to-[95%] contrast-125 font-normal text-lg">for Today's Mind</span>
             </div>
             <div className='flex flex-col items-center gap-10'>
                <div className="text-neutral-50 font-normal contrast-50 brightness-50  text-lg max-w-[480px] text-center">Experience meditation reimagined through AI guidance, making mindfulness a natural part of your day</div>
