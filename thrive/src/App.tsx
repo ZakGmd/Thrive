@@ -16,7 +16,11 @@ function App() {
     const tl = gsap.timeline() ;
     var splitSecondText = new SplitText('.secondText',{type: "words"}) ;
     var splitThirdText = new SplitText('.thirdText',{type: "words"}) ;
-    tl.fromTo(".lines",{
+    tl.from(".nav",{
+      opacity: 0 ,
+      duration:4 ,
+      ease: "power4.out"
+    }).fromTo(".lines",{
       opacity: 0 ,
       duration: 2, 
       y:-240 ,
@@ -25,7 +29,7 @@ function App() {
       duration: 2, 
       y:0 ,
       ease: "power2.out"
-    },"+=0.2").fromTo(".leftLine",{
+    },"-=2").fromTo(".leftLine",{
       opacity: 0 ,  
       duration: 2 ,
       x:-220 ,
@@ -52,22 +56,37 @@ function App() {
     duration:1,
     opacity: 1 ,
     y:0 
-  },"+=0").from(splitSecondText.words ,{
+  },"-=2").from(splitSecondText.words ,{
     duration: 0.58,    
     autoAlpha: 0 ,
     stagger: 0.099 ,
     ease: 'power2.in'
-},'-=0.85').from(splitThirdText.words ,{
+},'<').from(splitThirdText.words ,{
     duration: 0.58,    
     autoAlpha: 0 ,
     stagger: 0.099 ,
     ease: 'power2.in'
-},'-=0.95')
+},'-=0.95').from(".button",{
+  autoAlpha: 0 ,
+  duration: 0.60 ,
+  ease: "power4.out",
+  scaleX: 0.01 ,
+},"<").from(".svg",{
+  autoAlpha: 0 ,
+ 
+  duration: 2 ,
+  ease: "power4.out",
+},"+=0.005").from(".btnText",{
+  autoAlpha: 0 ,
+  y:30 ,
+  duration: 0.6 ,
+  ease: "power4.out",
+},"-=1.8")
    },{scope: container})
   return (
     <>
     <div className='flex flex-col w-full h-[100vh] bg-neutral-950 font-inter' ref={container} >
-      <div className=" flex items-center justify-between px-3 pt-4">
+      <div className="nav flex items-center justify-between px-3 pt-6">
         <div className=" font-bold text-2xl px-6 text-neutral-50 bg-clip-text  text-transparent bg-gradient-to-r from-[#F27500] from-[10%] to-neutral-100 to-[45%] contrast-125 w-[200px]  ">Thrive</div>
         <div className='flex items-center gap-10 '>
            <div className='text-[#F27500] cursor-pointer contrast-125'>Features</div>
@@ -80,7 +99,7 @@ function App() {
             <div className='flex bg-gradient-to-b from-white/20 to-white/30 backdrop-blur-sm  px-3 py-1 rounded-2xl tracking-[-0.12px] text-white cursor-pointer  transition-colors duration-300 '>Download App</div>
         </div>
        </div>
-       <div className='relative mt-[240px] max-w-[1400px] w-full mx-auto flex flex-col items-center justify-between h-full    '>
+       <div className='relative mt-[290px] max-w-[1400px] w-full mx-auto flex flex-col items-center justify-between h-full    '>
            <div className="lines absolute w-[1px] left-[340px] top-[-110px] h-[182px] bg-gradient-to-b from-transparent  to-[120%]  to-[#F27500]/30 rounded-2xl"></div>
            <div className="lines absolute w-[1px] right-[360px] top-[-110px] h-[182px] bg-gradient-to-b from-transparent to-[120%] to-[#F27500]/30 rounded-2xl"></div>
            <div className="leftLine absolute h-[1px] left-[100px] top-[200px] w-[200px] bg-gradient-to-r from-transparent  to-[120%]  to-[#F27500]/30">
@@ -99,9 +118,9 @@ function App() {
                <div className="secondText   text-neutral-50 font-normal contrast-50 brightness-50  text-lg max-w-[500px] text-center">Experience meditation reimagined through AI guidance, <br /><span className='thirdText  '>making mindfulness a natural part of your day</span> </div>
                <div className='flex items-center '>
                  
-                  <div  className="flex px-3 py-2 mt-5 gap-1 items-center border border-[#F27500]/60  rounded-3xl  ">
-                    <img src="/apple.svg" alt="Apple Logo" height={24} width={24} />
-                    <div className="flex flex-col items-start  text-neutral-50 ">
+                  <div  className="button flex px-3 py-2 mt-5 gap-1 items-center border border-[#F27500]/60  rounded-3xl overflow-hidden ">
+                    <img src="/apple.svg" alt="Apple Logo" height={24} width={24} className='svg' />
+                    <div className="btnText flex flex-col items-start  text-neutral-50 ">
                         <div className=" font-light text-[10px] leading-3   ">Download on the</div>
                         <div className=" font-semibold leading-5 ">APP STORE</div>
                     </div>
