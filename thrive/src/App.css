@@ -7,7 +7,7 @@
     
     filter: drop-shadow(rgba(236, 146, 61, 0.22) 0px -10px 14px);
     
-    animation: svgAnimation 2.5s linear  ;
+    animation: svgAnimation 4s linear  ;
   
   }
 @keyframes svgAnimation {
@@ -33,7 +33,7 @@
 .texts{
     
     transition: all;
-    animation: text-bg-animation 1.4s ease 1   ;
+    animation: text-bg-animation 2.5s ease 1   ;
   }
   
   @keyframes text-bg-animation {

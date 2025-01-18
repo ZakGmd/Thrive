@@ -3,8 +3,10 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import SplitText from "gsap-trial/SplitText" ;
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(SplitText) ;
 
 
 function App() {
@@ -12,19 +14,21 @@ function App() {
 
    useGSAP(()=>{
     const tl = gsap.timeline() ;
+    var splitSecondText = new SplitText('.secondText',{type: "words"}) ;
+    var splitThirdText = new SplitText('.thirdText',{type: "words"}) ;
     tl.fromTo(".lines",{
       opacity: 0 ,
       duration: 2, 
-      y:-180 ,
+      y:-240 ,
     },{
       opacity: 1 ,
       duration: 2, 
       y:0 ,
       ease: "power2.out"
-    },"+=0.4").fromTo(".leftLine",{
+    },"+=0.2").fromTo(".leftLine",{
       opacity: 0 ,  
       duration: 2 ,
-      x:-120 ,
+      x:-220 ,
     },{
       x:0 ,
       opacity:1 ,
@@ -33,13 +37,32 @@ function App() {
     },"<").fromTo(".rightLine",{
       opacity: 0 ,  
       duration: 1 ,
-      x:120 ,
+      x:220 ,
     },{
       x:0 ,
       opacity:1 ,
       duration: 2 ,
       ease: "power2.out"
-  },"<")
+  },"<").fromTo(".text1",{
+    opacity: 0 ,
+    y:-20 ,
+  
+  },{
+    ease: "power4.out",
+    duration:1,
+    opacity: 1 ,
+    y:0 
+  },"+=0").from(splitSecondText.words ,{
+    duration: 0.58,    
+    autoAlpha: 0 ,
+    stagger: 0.099 ,
+    ease: 'power2.in'
+},'-=0.85').from(splitThirdText.words ,{
+    duration: 0.58,    
+    autoAlpha: 0 ,
+    stagger: 0.099 ,
+    ease: 'power2.in'
+},'-=0.95')
    },{scope: container})
   return (
     <>
@@ -70,10 +93,10 @@ function App() {
           <div className='flex flex-col items-center gap-10'>
             <div className="texts flex flex-col gap-3 py-2 items-center bg-clip-text  text-transparent bg-gradient-to-r from-neutral-100  from-[10%] to-[#F27500] to-[95%] contrast-125 ">
                     <span className=" text-7xl  font-semibold  "  >Eternal Wisdom,</span>
-                    <span className="text-neutral-50  contrast-125 font-normal text-lg">for Today's Mind</span>
+                    <span className="text1  text-neutral-50  contrast-125 font-normal text-lg">for Today's Mind</span>
             </div>
             <div className='flex flex-col items-center gap-10'>
-               <div className="text-neutral-50 font-normal contrast-50 brightness-50  text-lg max-w-[480px] text-center">Experience meditation reimagined through AI guidance, making mindfulness a natural part of your day</div>
+               <div className="secondText   text-neutral-50 font-normal contrast-50 brightness-50  text-lg max-w-[500px] text-center">Experience meditation reimagined through AI guidance, <br /><span className='thirdText  '>making mindfulness a natural part of your day</span> </div>
                <div className='flex items-center '>
                  
                   <div  className="flex px-3 py-2 mt-5 gap-1 items-center border border-[#F27500]/60  rounded-3xl  ">
