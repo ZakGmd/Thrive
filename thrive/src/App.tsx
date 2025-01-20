@@ -85,7 +85,7 @@ function App() {
    },{scope: container})
   return (
     <>
-    <div className='flex flex-col w-full h-[100vh] bg-neutral-950 font-inter' ref={container} >
+    <div className='flex flex-col w-full h-[100vh] bg-neutral-950 font-inter overflow-hidden' ref={container} >
       <div className="nav flex items-center justify-between px-3 pt-6">
         <div className=" font-bold text-2xl px-6 text-neutral-50 bg-clip-text  text-transparent bg-gradient-to-r from-[#F27500] from-[10%] to-neutral-100 to-[45%] contrast-125 w-[200px]  ">Thrive</div>
         <div className='flex items-center gap-10 '>
