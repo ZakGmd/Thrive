@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitText from "gsap-trial/SplitText" ;
+import Scene from './components/scene';
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText) ;
@@ -85,7 +86,7 @@ function App() {
    },{scope: container})
   return (
     <>
-    <div className='flex flex-col w-full h-[100vh] bg-neutral-950 font-inter overflow-hidden' ref={container} >
+    <div className='flex flex-col w-full h-[300vh] bg-neutral-950 font-inter overflow-hidden' ref={container} >
       <div className="nav flex items-center justify-between px-3 pt-6">
         <div className=" font-bold text-2xl px-6 text-neutral-50 bg-clip-text  text-transparent bg-gradient-to-r from-[#F27500] from-[10%] to-neutral-100 to-[45%] contrast-125 w-[200px]  ">Thrive</div>
         <div className='flex items-center gap-10 '>
@@ -130,6 +131,7 @@ function App() {
               
             </div>
           </div>
+          <Scene/>
           <svg width="1700" height="380px" className="   " viewBox="0 0 878 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g filter="url(#filter0_f_1_2)" className="forSVG" >
                 <path d="M3 109C265.304 -36.6171 620.373 -27.9836 875 109"  fill="#0a0a0a"  stroke="url(#paint0_linear_1_2)"/>
