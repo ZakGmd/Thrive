@@ -7,6 +7,7 @@ import gsap from 'gsap'
 
 gsap.registerPlugin(useGSAP)
 
+
 export default function Scene() {
   return (
     <div className="h-[100vh] w-full">
