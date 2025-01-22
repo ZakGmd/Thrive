@@ -146,7 +146,9 @@ function App() {
           <div className="grid-cols-10 mt-10 grid items-center  secondSectionAnimate hideSecond">
                 <div className="col-span-3 flex flex-col h-[880px] pt-20 items-start  gap-[200px]  ">
                   <div className=" flex items-start max-w-[350px]  firstCard ">
-                    <div className="flex px-4 py-5 items-start border-[1.7px] max-w-[350px] w-full  border-neutral-50/50  bg-gradient-to-b from-neutral-950 from-[-17%] via-[#f97316]/70 via-20%  to-black to-[68%] rounded-xl ">
+                    <div className="flex px-4 py-5 items-start border-[1.7px] max-w-[350px] w-full group relative border-neutral-50/50  bg-gradient-to-b from-neutral-950 from-[-17%] via-[#f97316]/25 via-20% cursor-pointer  to-black to-[68%]  transition-all duration-500  rounded-xl ">
+                    <div className="absolute inset-0  opacity-0 bg-gradient-to-b from-transparent from-[45%] to-[#f97316]/10 to-[75%] group-hover:opacity-100 transition-opacity duration-500"></div>
+
                         <div className="flex flex-col items-start gap-5 w-full   ">
                             <div className="flex flex-col gap-5 w-full">
                                 <div className="p-2 items-center justify-center flex border border-neutral-50/50  max-w-[50px] rounded-xl">
@@ -164,7 +166,8 @@ function App() {
                     </div>     
                   </div>
                  <div className="flex items-star max-w-[350px] fourthCard w-full    ">
-                    <div className="flex px-4 py-5 items-start border-[1.7px] w-full max-w-[350px] border-neutral-50/50  bg-gradient-to-b from-neutral-950 from-[-17%] via-[#f97316]/70 via-20%  to-black to-[68%] rounded-xl ">
+                    <div className="flex px-4 py-5 items-start border-[1.7px] w-full group relative max-w-[350px] border-neutral-50/50  bg-gradient-to-b from-neutral-950 from-[-17%] via-[#f97316]/25 cursor-pointer via-20%  to-black to-[68%] rounded-xl ">
+                    <div className="absolute inset-0  opacity-0 bg-gradient-to-b from-transparent from-[45%] to-[#f97316]/10 to-[75%] group-hover:opacity-100 transition-opacity duration-500"></div>
                         <div className="flex flex-col items-start gap-5 w-full ">
                             <div className="flex flex-col gap-5 w-full">
                                 <div className="p-2 items-center justify-center flex border border-neutral-50/50  max-w-[50px] rounded-xl">
@@ -189,7 +192,9 @@ function App() {
                 </div>
                 <div className="col-span-3 flex flex-col h-[880px] pt-20 items-start w-full  gap-[200px] ml-[70px] ">
                 <div className="flex items-star max-w-[350px] fourthCard w-full   ">
-                    <div className="flex px-4 py-5 items-start border-[1.7px] w-full max-w-[350px] border-neutral-50/50  bg-gradient-to-b from-neutral-950 from-[-17%] via-[#f97316]/70 via-20%  to-black to-[68%] rounded-xl ">
+                    <div className="flex px-4 py-5 items-start border-[1.7px] group relative w-full max-w-[350px] border-neutral-50/50  bg-gradient-to-b from-neutral-950 from-[-17%] via-[#f97316]/25 cursor-pointer via-20%  to-black to-[68%]  rounded-xl ">
+                      <div className="absolute inset-0  opacity-0 bg-gradient-to-b from-transparent from-[45%] to-[#f97316]/10 to-[75%] group-hover:opacity-100 transition-opacity duration-500"></div>
+
                         <div className="flex flex-col items-start gap-5 w-full ">
                             <div className="flex flex-col gap-5">
                                 <div className="p-2 items-center justify-center flex border border-neutral-50/50  max-w-[50px] rounded-xl">
@@ -208,7 +213,9 @@ function App() {
                     </div>
                  </div>
                  <div className="flex items-star max-w-[350px] w-full fourthCard    ">
-                    <div className="flex px-4 py-5 items-start border-[1.7px] max-w-[350px] w-full border-neutral-50/50  bg-gradient-to-b from-neutral-950 from-[-17%] via-[#f97316]/70 via-20%  to-black to-[68%] rounded-xl ">
+                    <div className="flex px-4 py-5 items-start group relative border-[1.7px] max-w-[350px] w-full border-neutral-50/50  bg-gradient-to-b from-neutral-950 from-[-17%] via-[#f97316]/25 cursor-pointer via-20%  to-black to-[68%] rounded-xl ">
+                    <div className="absolute inset-0  opacity-0 bg-gradient-to-b from-transparent from-[45%] to-[#f97316]/10 to-[75%] group-hover:opacity-100 transition-opacity duration-500"></div>
+
                         <div className="flex flex-col items-start gap-5 w-full">
                             <div className="flex flex-col gap-5">
                                 <div className="p-2 items-center justify-center flex border border-neutral-50/50  max-w-[50px] rounded-xl">
