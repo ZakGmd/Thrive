@@ -6,17 +6,20 @@ import * as THREE from 'three'
 export default function Model() {
   const { nodes, scene } = useGLTF('/iphone.glb')
   const screenMesh = nodes.defaultMaterial_12 as THREE.Mesh
+  console.log(nodes)
   
   const htmlRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
    
     const screenMesh = nodes.defaultMaterial_12 as THREE.Mesh
+    const borders = nodes.defaultMaterial_1 as THREE.Mesh
+    borders.material = new THREE.MeshBasicMaterial({color: "#F27500" })
     screenMesh.material = new THREE.MeshBasicMaterial({ color: '#0a0a0a' })
   }, [nodes])
 
 
   return (
-    <group position={[0, 2, 3]} scale={[2, 2, 2]}>
+    <group position={[0,2, 3]} scale={[2, 2, 2]}>
       <primitive object={scene} />
       <Html
         transform
@@ -43,12 +46,12 @@ export default function Model() {
                     </div>
                     <div className='text-4xl bg-clip-text  text-transparent bg-gradient-to-r from-white  from-[2%] to-[#F27500] to-[95%] contrast-200'>Welcome to your daily <br />Mindfulness</div>
                 </div>
-                <div className='relative -z-30 rounded-full mt-1 bg-center bg-cover opacity-90 ml-3 w-[380px] h-[500px]'
+                <div className='relative -z-30 rounded-full mt-5 bg-center bg-cover opacity-90 ml-3 w-[380px] h-[500px]'
                     style={{backgroundImage: "url('wallpaper5.jpg')"}}
                 >
                   
                 </div>
-                <div className='flex flex-col items-center -mt-5 w-full gap-2 px-5 '>
+                <div className='flex flex-col items-center -mt-8 w-full gap-2 px-5 '>
                     <div className=' w-full py-2 bg-[#F27500]/90 text-center text-white rounded-3xl hover:bg-[#F27500] transition-all duration-200 cursor-pointer '>Get Started</div>
                     <div className=' w-full py-2 border border-[#F27500] text-center text-white rounded-3xl hover:bg-[#F27500]/10 transition-all duration-200 cursor-pointer '>Log in</div>
                     <div className='text-white pt-2 tracking-[-0.12px] text-[14px] text-center font-light'>By creating account or logging in , you agree to our <br /> <span className=' underline text-[#F27500] '>Terms & Conditions</span> and <span className=' underline text-[#F27500] '>Privacy Policy</span></div>

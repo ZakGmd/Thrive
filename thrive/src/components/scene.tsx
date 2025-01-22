@@ -13,7 +13,7 @@ export default function Scene() {
     <div className="h-[100vh] w-full">
       <Canvas
         shadows
-        camera={{ position: [0, 2, 10], fov: 45 }}
+        camera={{ position: [0, 2, 50], fov: 45 }}
         gl={{ 
           preserveDrawingBuffer: true,
           antialias: true,
@@ -32,11 +32,11 @@ export default function Scene() {
        
           
           <directionalLight
-            position={[0, 4, 5]}
-            intensity={10}
+            position={[-1, 4, 3]}
+            intensity={18}
             
           />
-          <ambientLight intensity={10} />
+          <ambientLight intensity={20} />
           <OrbitControls 
             enableZoom={true}
          

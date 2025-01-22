@@ -100,7 +100,7 @@ function App() {
             <div className='flex bg-gradient-to-b from-white/20 to-white/30 backdrop-blur-sm  px-3 py-1 rounded-2xl tracking-[-0.12px] text-white cursor-pointer  transition-colors duration-300 '>Download App</div>
         </div>
        </div>
-       <div className='relative mt-[290px] max-w-[1400px] w-full mx-auto flex flex-col items-center justify-between h-full    '>
+       <div className='relative mt-[290px] max-w-[1400px] w-full mx-auto flex flex-col items-center  h-full    '>
            <div className="lines absolute w-[1px] left-[340px] top-[-110px] h-[182px] bg-gradient-to-b from-transparent  to-[120%]  to-[#F27500]/30 rounded-2xl"></div>
            <div className="lines absolute w-[1px] right-[360px] top-[-110px] h-[182px] bg-gradient-to-b from-transparent to-[120%] to-[#F27500]/30 rounded-2xl"></div>
            <div className="leftLine absolute h-[1px] left-[100px] top-[200px] w-[200px] bg-gradient-to-r from-transparent  to-[120%]  to-[#F27500]/30">
@@ -131,7 +131,6 @@ function App() {
               
             </div>
           </div>
-          <Scene/>
           <svg width="1700" height="380px" className="   " viewBox="0 0 878 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g filter="url(#filter0_f_1_2)" className="forSVG" >
                 <path d="M3 109C265.304 -36.6171 620.373 -27.9836 875 109"  fill="#0a0a0a"  stroke="url(#paint0_linear_1_2)"/>
@@ -144,6 +143,89 @@ function App() {
                 </linearGradient>
                 </defs>
           </svg>
+          <div className="grid-cols-10 mt-10 grid items-center  secondSectionAnimate hideSecond">
+                <div className="col-span-3 flex flex-col h-[880px] pt-20 items-start  gap-[200px]  ">
+                  <div className=" flex items-start max-w-[350px]  firstCard ">
+                    <div className="flex px-4 py-5 items-start border-[1.7px] max-w-[350px] w-full  border-neutral-50/50  bg-gradient-to-b from-neutral-950 from-[-17%] via-[#f97316]/70 via-20%  to-black to-[68%] rounded-xl ">
+                        <div className="flex flex-col items-start gap-5 w-full   ">
+                            <div className="flex flex-col gap-5 w-full">
+                                <div className="p-2 items-center justify-center flex border border-neutral-50/50  max-w-[50px] rounded-xl">
+                                    <img src="/graph.svg" alt={""} width={28} height={28}/>
+                                </div>
+                                <div className=" font-medium text-2xl text-neutral-300 leading-[32px] w-full ">Your AI friend on the path <br /> to inner peace</div>
+                            </div>
+                            <div className="h-[1.5px] bg-gradient-to-l from-transparent to-orange-900/80 rounded-full w-full"></div>
+                            <div className=" font-light text-neutral-50 ">Let our AI create the perfect meditation just for you each day. Get personalized sessions based on your mood !</div>
+                        </div>
+                        <div className="flex flex-col h-[237px] w-[40px] max-w-max justify-between items-end">
+                            <div className="w-1 h-1 bg-orange-100 rounded-full"></div>
+                            <div className="w-1 h-1 bg-orange-500 rounded-full"></div>
+                        </div>
+                    </div>     
+                  </div>
+                 <div className="flex items-star max-w-[350px] fourthCard    ">
+                    <div className="flex px-4 py-5 items-start border-[1.7px] max-w-[350px] border-neutral-50/50  bg-gradient-to-b from-neutral-950 from-[-17%] via-[#f97316]/70 via-20%  to-black to-[68%] rounded-xl ">
+                        <div className="flex flex-col items-start gap-5 ">
+                            <div className="flex flex-col gap-5">
+                                <div className="p-2 items-center justify-center flex border border-neutral-50/50  max-w-[50px] rounded-xl">
+                                    <img src="/wallet.svg" alt={""} width={28} height={28}/>
+                                </div>
+                                <div className=" font-medium text-2xl text-neutral-300 leading-[28px] ">Rule-based budget and spending management</div>
+                            </div>
+                            <div className="h-[1.5px] bg-gradient-to-l from-transparent to-orange-900/80 w-full"></div>
+                            <div className=" font-light text-neutral-50 ">You can use ZERO to help control your spending and build a realistic budget to stay on track!</div>
+                        </div>
+                        <div className="flex flex-col h-[237px] w-[40px] justify-between items-end">
+                            <div className="w-1 h-1 bg-slate-100 rounded-full"></div>
+                            <div className="w-1 h-1 bg-orange-500 rounded-full"></div>
+                        </div>
+                    </div>
+                 </div>
+                </div>
+                <div className="col-span-4  h-[880px] w-full items-start gap-20">
+                    
+                    <Scene />
+                    
+                </div>
+                <div className="col-span-3 flex flex-col h-[880px] pt-20 items-start w-full  gap-[200px] ml-[70px] ">
+                <div className="flex items-star max-w-[350px] fourthCard w-full   ">
+                    <div className="flex px-4 py-5 items-start border-[1.7px] w-full max-w-[350px] border-neutral-50/50  bg-gradient-to-b from-neutral-950 from-[-17%] via-[#f97316]/70 via-20%  to-black to-[68%] rounded-xl ">
+                        <div className="flex flex-col items-start gap-5 w-full ">
+                            <div className="flex flex-col gap-5">
+                                <div className="p-2 items-center justify-center flex border border-neutral-50/50  max-w-[50px] rounded-xl">
+                                    <img src="/wallet.svg" alt={""} width={28} height={28}/>
+                                </div>
+                                <div className=" font-medium text-2xl text-neutral-300 leading-[32px] ">Mindful focus, better results </div>
+                            </div>
+                            <div className="h-[1.5px] bg-gradient-to-l from-transparent to-orange-900/80 w-full"></div>
+                            <div className=" font-light text-neutral-50 ">Enhance your daily productivity with focused sessions tailored to your work style. Stay in the zone !</div>
+                        </div>
+                        <div className="flex flex-col h-[237px] w-[40px] justify-between items-end">
+                            <div className="w-1 h-1 bg-slate-100 rounded-full"></div>
+                            <div className="w-1 h-1 bg-orange-500 rounded-full"></div>
+                        </div>
+                    </div>
+                 </div>
+                 <div className="flex items-star max-w-[350px] fourthCard    ">
+                    <div className="flex px-4 py-5 items-start border-[1.7px] max-w-[350px] border-neutral-50/50  bg-gradient-to-b from-neutral-950 from-[-17%] via-[#f97316]/70 via-20%  to-black to-[68%] rounded-xl ">
+                        <div className="flex flex-col items-start gap-5 ">
+                            <div className="flex flex-col gap-5">
+                                <div className="p-2 items-center justify-center flex border border-neutral-50/50  max-w-[50px] rounded-xl">
+                                    <img src="/wallet.svg" alt={""} width={28} height={28}/>
+                                </div>
+                                <div className=" font-medium text-2xl text-neutral-300 leading-[28px] ">Rule-based budget and spending management</div>
+                            </div>
+                            <div className="h-[1.5px] bg-gradient-to-l from-transparent to-orange-900/80 w-full"></div>
+                            <div className=" font-light text-neutral-50 ">You can use ZERO to help control your spending and build a realistic budget to stay on track!</div>
+                        </div>
+                        <div className="flex flex-col h-[237px] w-[40px] justify-between items-end">
+                            <div className="w-1 h-1 bg-slate-100 rounded-full"></div>
+                            <div className="w-1 h-1 bg-orange-500 rounded-full"></div>
+                        </div>
+                    </div>
+                 </div>
+                </div>
+            </div>
        </div>
     </div>
          
