@@ -46,7 +46,7 @@ export default function Model() {
                     </div>
                     <div className='text-4xl bg-clip-text  text-transparent bg-gradient-to-r from-white  from-[2%] to-[#F27500] to-[95%] contrast-200'>Welcome to your daily <br />Mindfulness</div>
                 </div>
-                <div className='relative -z-30 rounded-full mt-5 bg-center bg-cover opacity-90 ml-3 w-[380px] h-[500px]'
+                <div className='relative z-[-100] rounded-full mt-5 bg-center bg-cover opacity-90 ml-3 w-[380px] h-[500px]'
                     style={{backgroundImage: "url('wallpaper5.jpg')"}}
                 >
                   
