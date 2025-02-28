@@ -5,7 +5,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitText from "gsap-trial/SplitText" ;
 import Scene from './components/scene';
-import { ParticleImage } from './components/Particles';
+
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText) ;
@@ -66,13 +66,88 @@ const Particles = () => {
 
   return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none" />
 }
+const includedFeatures = [
+  { text: "Unlimited requests", icon: "✓" },
+  { text: "Unlimited brands", icon: "✓" },
+  { text: "Unlimited users", icon: "✓" },
+  { text: "1 Bruno Talent (Designer, Developer...)", icon: "✓" },
+  { text: "1 Project Manager", icon: "✓" },
+  { text: "Shared Slack channel", icon: "✓" },
+  { text: "Pause or cancel anytime", icon: "✓" }
+];
+
 
 function App() {
-  const container = useRef(null) ;
+  const cardRef = useRef<HTMLDivElement>(null) ;
+  const glowEffectRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    const card = cardRef.current;
+    const glowEffect = glowEffectRef.current;
+    
+    if (!card || !glowEffect) return;
+    
+    // Initial setup - default glow position
+    glowEffect.style.setProperty('--mouse-x', '80px');
+    glowEffect.style.setProperty('--mouse-y', '60px');
+    
+    // Set up 3D perspective on the card
+    card.style.transform = 'perspective(100px) rotateX(0deg) rotateY(0deg)';
+    card.style.transition = 'transform 0.1s ease';
+    
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = card.getBoundingClientRect();
+      
+      // Calculate mouse position relative to card
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      // Update glow effect position
+      glowEffect.style.transition = 'none';
+      glowEffect.style.setProperty('--mouse-x', `${x}px`);
+      glowEffect.style.setProperty('--mouse-y', `${y}px`);
+      
+      // Calculate rotation based on mouse position
+      // We map the position from (0,0) - (width,height) to (-15,15) degrees
+      const rotateY = ((x / rect.width) * 3) - 1;
+      const rotateX = (((y / rect.height) * 3) - 1) * -1; // Invert for natural feel
+      
+      // Apply 3D rotation
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1, 1, 1)`;
+    };
+    
+    const handleMouseLeave = () => {
+      // Reset 3D effect with smooth transition
+      card.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      
+      // Reset glow effect with smooth transition
+      glowEffect.style.transition = 'all 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+      glowEffect.style.setProperty('--mouse-x', '80px');
+      glowEffect.style.setProperty('--mouse-y', '60px');
+    };
+    
+    const handleMouseEnter = () => {
+      // Remove transition to make rotation immediate during hover
+      card.style.transition = 'transform 0.1s ease';
+    };
+    
+    // Add event listeners
+    card.addEventListener('mousemove', handleMouseMove);
+    card.addEventListener('mouseleave', handleMouseLeave);
+    card.addEventListener('mouseenter', handleMouseEnter);
+    
+    // Cleanup
+    return () => {
+      card.removeEventListener('mousemove', handleMouseMove);
+      card.removeEventListener('mouseleave', handleMouseLeave);
+      card.removeEventListener('mouseenter', handleMouseEnter);
+    };
+  }, []);
 
   return (
     <>
-    <div className='flex flex-col relative w-full items-center h-[300vh] bg-neutral-950 font-inter overflow-hidden  "' ref={container} >
+    <div className='flex flex-col relative w-full items-center h-[300vh] bg-neutral-950 font-inter overflow-hidden  "'  >
       <div className="nav px-5 flex items-center w-full justify-between  pt-6">
         <div className="  font-bold text-2xl px-6 text-neutral-50 bg-clip-text  text-transparent bg-gradient-to-r from-[#F27500] from-[10%] to-neutral-100 to-[45%] contrast-125 w-[230px]   ">Thrive</div>
         <div className='flex items-center gap-[10px]  px-2 py-1   border border-white/10 rounded-3xl backdrop-blur-xl z-20 bg-black/10 '>
@@ -91,7 +166,7 @@ function App() {
         opacity-30  backdrop-contrast-200  rounded-[9999px] pointer-events-none origin-[50%_0%] animate-spotlight'></div>
         <Particles />
        
-       <div className='relative mt-[280px] max-w-[1400px] w-full mx-auto flex flex-col items-center  h-full    '>
+       <div className='relative mt-[280px]  w-full mx-auto flex flex-col items-center  h-full    '>
         
               <div className="lines absolute  w-[1px] left-[240px] top-[-200px] h-[100vh] bg-gradient-to-b from-transparent from-[-10%]  to-[70%] via-[#F27500]/10 via-[28%]  to-transparent rounded-2xl"></div>
               <div className="lines absolute w-[1px] right-[240px] top-[-200px] h-[100vh] bg-gradient-to-b from-transparent from-[-10%]  to-[70%] via-[#F27500]/10 via-[28%]  to-transparent rounded-2xl"></div>
@@ -134,7 +209,7 @@ function App() {
                 </linearGradient>
                 </defs>
           </svg>
-          <div className="grid-cols-10  grid items-center  secondSectionAnimate hideSecond">
+          <div className="grid-cols-10  grid items-center mb-[80px] mt-[120px]  secondSectionAnimate hideSecond">
                 <div className="col-span-3 flex flex-col h-[880px] pt-20 items-start  gap-[200px]  ">
                   <div className=" flex items-start max-w-[350px]  firstCard ">
                     <div className="flex px-4 py-5 items-start border-[1.7px] max-w-[350px] w-full group relative border-neutral-50/50  bg-gradient-to-b from-neutral-950 from-[-17%] via-[#f97316]/25 via-20% cursor-pointer  to-black to-[68%]  transition-all duration-500  rounded-xl ">
@@ -224,7 +299,120 @@ function App() {
                     </div>
                  </div>
                 </div>
-            </div>
+          </div>
+          <div className='grid grid-cols-9 gap-10  items-center mt-12  w-[1400px] rounded-md '>
+             <div ref={cardRef} className='cardGrid1  relative col-span-3  py-6 px-12 flex flex-col gap-8  items-start     rounded-2xl overflow-hidden   w-full '>
+                 <div ref={glowEffectRef} className='glowEffect absolute inset-0 w-full h-full ' ></div>
+                  <div className='flex flex-col content3d gap-6 w-full z-10'>
+                     <div className='flex items-center justify-center   w-full gap-2 text-white  '>
+                       <div className='  saving px-3 py-1 bg-gradient-to-b relative from-white/5 flex items-center justify-center from-[30%] to-[180%] shadow-[0_1px_2px_rgba(255,255,255,0.09)] to-orange-400/40  text-[14px] rounded-full'>save 20%</div>
+                     </div>
+                     <div className='flex flex-col gap-4'>
+                         <div className='flex flex-col gap-2  text-white'>
+                            <div className=' font-Garamond text-4xl '>Monthly</div>
+                            <div className='max-w-[300px] text-white/60 font-light'>Gives you the most freedom. Perfect if you want to try the membership out.</div>
+                         </div>
+                         <div className='flex flex-col text-white   '>
+                             <div className='flex items-center gap-1 '>
+                                <div className=' text-4xl font-extralight '>$</div>
+                                <div className='flex items-center gap-1 '>
+                                <div className='bg-clip-text text-transparent bg-gradient-to-br text-[48px]  leading-normal from-white from-[10%] to-[#171717]/5 to-[148.91%] contrast-150 '>2,999</div>
+                                <div className=' text-xl italic pt-[14px] text-white/40 font-light'>/mo</div>
+                                </div>
+                             </div>
+                             <div className='text-white/60 max-w-[340px] tracking-[-0.13px] -mt-3 font-light'>Pause or cancel anytime</div>
+                          </div>
+                     </div>
+                     <div className='btn flex items-center justify-center gap-2 py-3 px-5  w-full   bg-[#F27500] contrast-150 cursor-pointer rounded-2xl active:shadow-[0_0.8px_4px_rgba(255,255,255,0.07),inset_0px_0.2px_0px_rgba(255,255,255,0.10)] transition-shadow duration-300 select-none '>
+                        <svg width="16px" height="16px" viewBox="0 0 24 24" stroke-width="1" fill="none" xmlns="http://www.w3.org/2000/svg" color="#ffffff"><path d="M3 12L21 12M21 12L12.5 3.5M21 12L12.5 20.5" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        <div className=' text-white text-[16px] leading-normal tracking-[-0.13px]' >Start Today</div>
+                     </div>
+                  </div>
+                  <div className='z-10 flex flex-col gap-2 pb-4'>
+                  <div className='text-white mb-2  pl-[2px]'>What's included</div>
+                  {includedFeatures.map((feature, index) => (
+                    <div key={index} className="flex items-center  gap-3">
+                      <span className="text-[#F27500]">{feature.icon}</span>
+                      <span className='text-white'>{feature.text}</span>
+                    </div>
+                  ))}
+                  </div>
+             </div>
+             <div ref={cardRef} className='cardGrid1  relative col-span-3  py-6 px-12 flex flex-col gap-8  items-start     rounded-2xl overflow-hidden   w-full '>
+                 <div ref={glowEffectRef} className='glowEffect absolute inset-0 w-full h-full ' ></div>
+                  <div className='flex flex-col content3d gap-6 w-full z-10'>
+                     <div className='flex items-center justify-center   w-full gap-2 text-white  '>
+                       <div className='  saving px-3 py-1 bg-gradient-to-b relative from-white/5 flex items-center justify-center from-[30%] to-[180%] shadow-[0_1px_2px_rgba(255,255,255,0.09)] to-orange-400/40  text-[14px] rounded-full'>save 20%</div>
+                     </div>
+                     <div className='flex flex-col gap-4'>
+                         <div className='flex flex-col gap-2  text-white'>
+                            <div className=' font-Garamond text-4xl '>Quarterly</div>
+                            <div className='max-w-[300px] text-white/60 font-light'>Gives you the most freedom. Perfect if you want to try the membership out.</div>
+                         </div>
+                         <div className='flex flex-col text-white   '>
+                             <div className='flex items-center gap-1 '>
+                                <div className=' text-4xl font-extralight '>$</div>
+                                <div className='flex items-center gap-1 '>
+                                <div className='bg-clip-text text-transparent bg-gradient-to-br text-[48px]  leading-normal from-white from-[10%] to-[#171717]/5 to-[148.91%] contrast-150 '>2,999</div>
+                                <div className=' text-xl italic pt-[14px] text-white/40 font-light'>/mo</div>
+                                </div>
+                             </div>
+                             <div className='text-white/60 max-w-[340px] tracking-[-0.13px] -mt-3 font-light'>Pause or cancel anytime</div>
+                          </div>
+                     </div>
+                     <div className='btn flex items-center justify-center gap-2 py-3 px-5  w-full   bg-[#F27500] contrast-150 cursor-pointer rounded-2xl active:shadow-[0_0.8px_4px_rgba(255,255,255,0.07),inset_0px_0.2px_0px_rgba(255,255,255,0.10)] transition-shadow duration-300 select-none '>
+                        <svg width="16px" height="16px" viewBox="0 0 24 24" stroke-width="1" fill="none" xmlns="http://www.w3.org/2000/svg" color="#ffffff"><path d="M3 12L21 12M21 12L12.5 3.5M21 12L12.5 20.5" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        <div className=' text-white text-[16px] leading-normal tracking-[-0.13px]' >Start Today</div>
+                     </div>
+                  </div>
+                  <div className='z-10 flex flex-col gap-2 pb-4'>
+                  <div className='text-white mb-2  pl-[2px]'>What's included</div>
+                  {includedFeatures.map((feature, index) => (
+                    <div key={index} className="flex items-center  gap-3">
+                      <span className="text-[#F27500]">{feature.icon}</span>
+                      <span className='text-white'>{feature.text}</span>
+                    </div>
+                  ))}
+                  </div>
+             </div>
+             <div ref={cardRef} className='cardGrid1  relative col-span-3  py-6 px-12 flex flex-col gap-8  items-start     rounded-2xl overflow-hidden   w-full '>
+                 <div ref={glowEffectRef} className='glowEffect absolute inset-0 w-full h-full ' ></div>
+                  <div className='flex flex-col content3d gap-6 w-full z-10'>
+                     <div className='flex items-center justify-center   w-full gap-2 text-white  '>
+                       <div className='  saving px-3 py-1 bg-gradient-to-b relative from-white/5 flex items-center justify-center from-[30%] to-[180%] shadow-[0_1px_2px_rgba(255,255,255,0.09)] to-orange-400/40  text-[14px] rounded-full'>save 20%</div>
+                     </div>
+                     <div className='flex flex-col gap-4'>
+                         <div className='flex flex-col gap-2  text-white'>
+                            <div className=' font-Garamond text-4xl '>Yearly</div>
+                            <div className='max-w-[300px] text-white/60 font-light'>Gives you the most freedom. Perfect if you want to try the membership out.</div>
+                         </div>
+                         <div className='flex flex-col text-white   '>
+                             <div className='flex items-center gap-1 '>
+                                <div className=' text-4xl font-extralight '>$</div>
+                                <div className='flex items-center gap-1 '>
+                                <div className='bg-clip-text text-transparent bg-gradient-to-br text-[48px]  leading-normal from-white from-[10%] to-[#171717]/5 to-[148.91%] contrast-150 '>2,999</div>
+                                <div className=' text-xl italic pt-[14px] text-white/40 font-light'>/mo</div>
+                                </div>
+                             </div>
+                             <div className='text-white/60 max-w-[340px] tracking-[-0.13px] -mt-3 font-light'>Pause or cancel anytime</div>
+                          </div>
+                     </div>
+                     <div className='btn flex items-center justify-center gap-2 py-3 px-5  w-full   bg-[#F27500] contrast-150 cursor-pointer rounded-2xl active:shadow-[0_0.8px_4px_rgba(255,255,255,0.07),inset_0px_0.2px_0px_rgba(255,255,255,0.10)] transition-shadow duration-300 select-none '>
+                        <svg width="16px" height="16px" viewBox="0 0 24 24" stroke-width="1" fill="none" xmlns="http://www.w3.org/2000/svg" color="#ffffff"><path d="M3 12L21 12M21 12L12.5 3.5M21 12L12.5 20.5" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        <div className=' text-white text-[16px] leading-normal tracking-[-0.13px]' >Start Today</div>
+                     </div>
+                  </div>
+                  <div className='z-10 flex flex-col gap-2 pb-4'>
+                  <div className='text-white mb-2  pl-[2px]'>What's included</div>
+                  {includedFeatures.map((feature, index) => (
+                    <div key={index} className="flex items-center  gap-3">
+                      <span className="text-[#F27500]">{feature.icon}</span>
+                      <span className='text-white'>{feature.text}</span>
+                    </div>
+                  ))}
+                  </div>
+             </div>
+          </div>
        </div>
     </div>
          

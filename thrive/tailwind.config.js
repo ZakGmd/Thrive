@@ -14,7 +14,11 @@ export default {
   			inter: [
   				'Inter',
   				'serif'
-  			]
+  			],
+        Garamond:[
+          'Garamond',
+          'serif'
+        ]
   		},
     },
   },
