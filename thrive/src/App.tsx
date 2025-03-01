@@ -1,5 +1,5 @@
 import './App.css'
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -80,6 +80,20 @@ const includedFeatures = [
 function App() {
   const cardRef = useRef<HTMLDivElement>(null) ;
   const glowEffectRef = useRef<HTMLDivElement>(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [emailGradientWidth, setEmailGradientWidth] = useState('40%');
+  const [passwordGradientWidth, setPasswordGradientWidth] = useState('40%');
+
+  // Effect to update gradient width based on input length
+  useEffect(() => {
+    // Calculate width based on input length (min 5%, max 100%)
+    const newEmailWidth = email.length ? Math.min(40 + email.length * 6, 100) : 40;
+    setEmailGradientWidth(`${newEmailWidth}%`);
+    
+    const newPasswordWidth = password.length ? Math.min(40 + password.length * 6, 100) : 40;
+    setPasswordGradientWidth(`${newPasswordWidth}%`);
+  }, [email, password]);
   
   useEffect(() => {
     const card = cardRef.current;
@@ -147,7 +161,7 @@ function App() {
 
   return (
     <>
-    <div className='flex flex-col relative w-full items-center h-[300vh] bg-neutral-950 font-inter overflow-hidden  "'  >
+    <div className='flex flex-col relative w-full items-center h-[700vh] bg-neutral-950 font-inter overflow-hidden  "'  >
       <div className="nav px-5 flex items-center w-full justify-between  pt-6">
         <div className="  font-bold text-2xl px-6 text-neutral-50 bg-clip-text  text-transparent bg-gradient-to-r from-[#F27500] from-[10%] to-neutral-100 to-[45%] contrast-125 w-[230px]   ">Thrive</div>
         <div className='flex items-center gap-[10px]  px-2 py-1   border border-white/10 rounded-3xl backdrop-blur-xl z-20 bg-black/10 '>
@@ -253,7 +267,7 @@ function App() {
                 </div>
                 <div className="col-span-4  h-[880px] w-full items-start gap-20">
                     
-                    <Scene />
+                    
                     
                 </div>
                 <div className="col-span-3 flex flex-col h-[880px] pt-20 items-start w-full  gap-[200px] ml-[70px] ">
@@ -301,29 +315,33 @@ function App() {
                 </div>
           </div>
           <div className='grid grid-cols-9 gap-10  items-center mt-12  w-[1400px] rounded-md '>
-             <div ref={cardRef} className='cardGrid1  relative col-span-3  py-6 px-12 flex flex-col gap-8  items-start     rounded-2xl overflow-hidden   w-full '>
+             <div ref={cardRef} className='cardGrid1  relative col-span-3  py-8 px-12 flex flex-col gap-8  items-start     rounded-2xl overflow-hidden   w-full '>
                  <div ref={glowEffectRef} className='glowEffect absolute inset-0 w-full h-full ' ></div>
                   <div className='flex flex-col content3d gap-6 w-full z-10'>
-                     <div className='flex items-center justify-center   w-full gap-2 text-white  '>
-                       <div className='  saving px-3 py-1 bg-gradient-to-b relative from-white/5 flex items-center justify-center from-[30%] to-[180%] shadow-[0_1px_2px_rgba(255,255,255,0.09)] to-orange-400/40  text-[14px] rounded-full'>save 20%</div>
-                     </div>
-                     <div className='flex flex-col gap-4'>
+                    
+                     <div className='flex flex-col gap-3'>
                          <div className='flex flex-col gap-2  text-white'>
-                            <div className=' font-Garamond text-4xl '>Monthly</div>
+                            <div className='flex items-center justify-between w-full'>
+                              <div className=' font-Garamond text-4xl '>Monthly</div>
+                              <div className='  saving px-3 py-1 bg-gradient-to-b relative from-white/5 flex items-center justify-center from-[30%] to-[180%] shadow-[0_1px_2px_rgba(255,255,255,0.09)] to-orange-400/10  text-[14px] rounded-xl'>save 20%</div>
+
+
+                            </div>
+                           
                             <div className='max-w-[300px] text-white/60 font-light'>Gives you the most freedom. Perfect if you want to try the membership out.</div>
                          </div>
                          <div className='flex flex-col text-white   '>
                              <div className='flex items-center gap-1 '>
                                 <div className=' text-4xl font-extralight '>$</div>
                                 <div className='flex items-center gap-1 '>
-                                <div className='bg-clip-text text-transparent bg-gradient-to-br text-[48px]  leading-normal from-white from-[10%] to-[#171717]/5 to-[148.91%] contrast-150 '>2,999</div>
+                                <div className='bg-clip-text text-transparent bg-gradient-to-br text-[52px]  leading-normal from-white from-[10%] to-[#171717]/5 to-[148.91%] contrast-150 '>2,999</div>
                                 <div className=' text-xl italic pt-[14px] text-white/40 font-light'>/mo</div>
                                 </div>
                              </div>
                              <div className='text-white/60 max-w-[340px] tracking-[-0.13px] -mt-3 font-light'>Pause or cancel anytime</div>
                           </div>
                      </div>
-                     <div className='btn flex items-center justify-center gap-2 py-3 px-5  w-full   bg-[#F27500] contrast-150 cursor-pointer rounded-2xl active:shadow-[0_0.8px_4px_rgba(255,255,255,0.07),inset_0px_0.2px_0px_rgba(255,255,255,0.10)] transition-shadow duration-300 select-none '>
+                     <div className='btn flex items-center justify-center gap-2 py-3 px-5  w-full my-2  bg-[#F27500] contrast-150 cursor-pointer rounded-2xl active:shadow-[0_0.8px_4px_rgba(255,255,255,0.07),inset_0px_0.2px_0px_rgba(255,255,255,0.10)] transition-shadow duration-300 select-none '>
                         <svg width="16px" height="16px" viewBox="0 0 24 24" stroke-width="1" fill="none" xmlns="http://www.w3.org/2000/svg" color="#ffffff"><path d="M3 12L21 12M21 12L12.5 3.5M21 12L12.5 20.5" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                         <div className=' text-white text-[16px] leading-normal tracking-[-0.13px]' >Start Today</div>
                      </div>
@@ -412,6 +430,55 @@ function App() {
                   ))}
                   </div>
              </div>
+          </div>
+
+          <div className='grid grid-col-9 items-center justify-center mt-[120px]'>
+                  <div className=' col-span-4 flex flex-col gap-2 items-start  bg-[#1D1D1F] text-white border border-black shadow-[0_0.2px_2px_rgba(255,255,255,0.07),inset_0px_0.7px_0px_rgba(255,255,255,0.10)]  px-3 py-2 rounded-2xl'>
+                    <div className='txtShadow w-full text-center font-Garamond text-[18px] leading-relaxed tracking-wide text-slate-100 '>Welcome Back!</div>
+                    <div className='flex flex-col items-start gap-2'>
+                      <div className='py-1 px-2 relative overflow-hidden flex items-center gap-1 h-full w-full bg-gradient-to-r    shadow-[-0.5px_0.87px_0.06px_rgba(0,0,0,0.37),inset_0px_0.5px_2px_rgba(0,0,0,0.8)]  rounded-lg'>
+                      <div 
+                        className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#fc7348]/5  to-transparent  transition-all duration-300 ease-out" 
+                        style={{ width: emailGradientWidth }}
+                      ></div>
+                         <svg 
+                          width="20" 
+                          height="20" 
+                          viewBox="0 0 24 24" 
+                          fill="none" 
+                          xmlns="http://www.w3.org/2000/svg" 
+                          color={email.length > 0 ? "#fc7348" : "#313131"} 
+                          strokeWidth="1"
+                          className={`transition-all h-5 w-5 duration-300 ${email.length > 0 ? '' : ''}`}
+                        >
+                          <path fillRule="evenodd" clipRule="evenodd" d="M4 4.25C2.48122 4.25 1.25 5.48122 1.25 7V17C1.25 18.5188 2.48122 19.75 4 19.75H20C21.5188 19.75 22.75 18.5188 22.75 17V7C22.75 5.48122 21.5188 4.25 20 4.25H4ZM7.4301 8.38558C7.09076 8.14804 6.62311 8.23057 6.38558 8.5699C6.14804 8.90924 6.23057 9.37689 6.5699 9.61442L11.5699 13.1144C11.8281 13.2952 12.1719 13.2952 12.4301 13.1144L17.4301 9.61442C17.7694 9.37689 17.852 8.90924 17.6144 8.5699C17.3769 8.23057 16.9092 8.14804 16.5699 8.38558L12 11.5845L7.4301 8.38558Z" fill={email.length > 0 ? "#fc7348" : "#313131"}></path>
+                        </svg>
+
+                        <input type="text" name="email" value={email} onChange={(e) => setEmail(e.target.value)} id=""  placeholder='Email' className='h-full z-10 text-slate-100 text-[14px] placeholder:text-orange-100/10 placeholder:font-normal font-light bg-transparent outline-none' />
+                      </div>
+                      <div className='py-1 px-2 relative overflow-hidden flex items-center gap-1 h-full w-full bg-gradient-to-r   shadow-[-0.5px_0.87px_0.06px_rgba(0,0,0,0.37),inset_0px_0.5px_2px_rgba(0,0,0,0.8)]  rounded-lg'>
+                      <div 
+                        className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#fc7348]/5 to-transparent  transition-all duration-300 ease-out" 
+                        style={{ width: passwordGradientWidth }}
+                      ></div>
+                       <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        viewBox="0 0 24 24" 
+                        fill={password.length > 0 ? "#fc7348" : "#313131"} 
+                        className={`w-5 h-5 transition-all duration-300 ${password.length > 0 ? '' : ''}`}
+                      >
+                        <path fillRule="evenodd" d="M12 1.5a5.25 5.25 0 0 0-5.25 5.25v3a3 3 0 0 0-3 3v6.75a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3v-6.75a3 3 0 0 0-3-3v-3c0-2.9-2.35-5.25-5.25-5.25Zm3.75 8.25v-3a3.75 3.75 0 1 0-7.5 0v3h7.5Z" clipRule="evenodd" />
+                      </svg>
+                        <input type="password" name="password" id=""  value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' className='h-full z-10 placeholder:text-orange-100/10 text-[14px] font-light text-slate-100 bg-transparent outline-none' />
+                      </div>
+                      
+                    </div>
+                    <div className='text-[8px] mt-[-3px] text-white/10 pl-[3px] cursor-pointer hover:text-white/15 transition-all duration-300'>Forgot your password?</div>
+                    <div className='flex items-center justify-center w-full gap-4 mt-1'>
+                     <div className='px-5 py-1 border text-slate-100 rounded-xl border-black bg-[#1D1D1F] font-light cursor-pointer hover:to-[#fc7348]/30 hover:to-[180%] hover:from-[40%] hover:bg-gradient-to-b hover:from-transparent transition-all duration-300   hover:shadow-[0px_0.0001px_0px_rgba(252,115,72,0.01),inset_0px_0.7px_0px_rgba(0,0,0,0.10)] active:shadow-[0px_0.1px_0px_rgba(252,115,72,0.01),inset_0px_5px_0px_rgba(0,0,0,0.10)]  shadow-[0_2px_2px_rgba(0,0,0,0.1),inset_0px_0.5px_0px_rgba(255,255,255,0.10)] text-[14px]  '>Back</div>
+                     <div className='px-3 py-1 border text-slate-100 rounded-xl border-black bg-[#fc7348]/60 font-light cursor-pointer hover:to-[#fc7348]/10 hover:bg-gradient-to-b hover:from-transparent transition-all duration-300   hover:shadow-[0px_0.4px_0px_rgba(0,0,0,0.4),inset_0px_2px_0px_rgba(0,0,0,0.10)] active:shadow-[0px_0.1px_0px_rgba(252,115,72,0.01),inset_0px_5px_0px_rgba(0,0,0,0.10)]  shadow-[0_1.1px_2px_rgba(0,0,0,0.65),inset_0px_0.7px_0px_rgba(255,255,255,0.15)] text-[14px]  '>Continue</div>
+                    </div>
+                  </div>
           </div>
        </div>
     </div>
